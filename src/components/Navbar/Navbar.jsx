@@ -8,12 +8,8 @@ import { Link } from "react-router-dom";
 import {
   // AiFillStar,
   AiOutlineHome,
-  AiOutlineFundProjectionScreen,
   AiOutlineContacts
 } from "react-icons/ai";
-import { GiSkills } from "react-icons/gi"
-import { CgFileDocument } from "react-icons/cg";
-
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -57,49 +53,27 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
+            {/* SI ES ADMINISTRADOR QUE VEA ESTA PESATANIA, SINO NO
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/skillset"
+                to="/Comunidad"
                 onClick={() => updateExpanded(false)}
               >
-                <GiSkills style={{ marginBottom: "2px" }} /> Skillset
+                <AiOutlineContacts style={{ marginBottom: "2px" }} /> Comunidad
               </Nav.Link>
             </Nav.Item>
+            */}
 
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/project"
+                to="/perfil"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
-                Projects
+                <AiOutlineContacts style={{ marginBottom: "2px" }} /> Perfil
               </Nav.Link>
             </Nav.Item>
-
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/resume"
-                onClick={() => updateExpanded(false)}
-              >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/contact"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineContacts style={{ marginBottom: "2px" }} /> Contact Me
-              </Nav.Link>
-            </Nav.Item>
-            
           </Nav>
         </Navbar.Collapse>
       </Container>

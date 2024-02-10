@@ -1,11 +1,15 @@
 import React from 'react'
-import About from '../components/Home/About';
+import Post from '../components/Home/Post';
+import FormPost from '../components/Home/PostForm';
 
 
 const Home = () => {
   return (
-    <section>      
-      <About />
+    <section>    
+      <br />
+      <br />
+      <FormPost/>  
+      <Post />
     </section>
   );
 }

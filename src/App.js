@@ -6,20 +6,18 @@ import {
   Navigate
 } from "react-router-dom";
 
+import Login from "./components/Usuario/Login";
 import Home from './pages/Home'
-import Skill from './pages/Skillset'
-import Project from './pages/Projects'
-import Resume from './pages/Resume'
-import Contact from './pages/Contact'
-
+import Perfil from './pages/Usuario'
+import Comunidad from "./pages/Comunidad";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import Preloader from "./components/PreLoader"
 import ScrollToTop from "./components/ScrollToTop"
 
 import "./App.css";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -40,13 +38,11 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/skillset" element={<Skill />} />
-          <Route path="/project" element={<Project />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/perfil" element={<Perfil />} />
+          <Route path="/comunidad" element={<Comunidad />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/"/>} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );
