@@ -19,34 +19,15 @@ export const GetPosts = async () => {
     return rsp;
 }
 
-export const GetPostsById = async (id) => {
+export const GetPostsByAuthor = async (id) => {
     let url = 'Posts/byauthor';
     let rsp = await GET(url,id);
 
     return rsp;
 }
 
-export const changeUser = async (newTasks) =>{
-    let url = 'tasks/'+newTasks.id;
-    let tasks ={
-        "description": newTasks.name
-    }
-    let rsp = await PUT(url,tasks);
-
-    return rsp;
-}
-
-export const deleteTask = async (id) =>{
-    let url = 'tasks';
+export const deletePost = async (id) =>{
+    let url = 'Posts';
     let rsp = await DELETE(url,id);
     return rsp;;
-}
-
-export const addUser = async (task) =>{
-    let url = 'tasks';
-    let tasks ={
-        "description": task
-    }
-    let rsp = await POST(url,tasks)
-    return rsp
 }

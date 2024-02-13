@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { LogInRequest, ValidateToken } from "../../services/Session";
+import { LogInRequest, ValidateToken } from "../services/Session";
 
 export const AuthContext = createContext();
 
@@ -10,8 +10,6 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  //datos del usuario que va a ser leido en toda la aplicación.
-  const [user, setUser] = useState(null);
 
   //informe si esta o no Autenticado
   const [isAuth, setIsAuth] = useState(false);
@@ -35,7 +33,6 @@ export const AuthProvider = ({ children }) => {
   const signin = async (user) => {
     try {
       const res = await LogInRequest(user);
-      setUser(res.data);
       setIsAuth(true);
     } catch (error) {
 
@@ -47,7 +44,6 @@ export const AuthProvider = ({ children }) => {
   const signout = () => {
     localStorage.clear();
     setIsAuth(false);
-    setUser(null);
   };
 
   useEffect(() => {
@@ -67,16 +63,15 @@ export const AuthProvider = ({ children }) => {
           const res = await ValidateToken(token);
           if (res) {
             setIsAuth(true);
-            setUser(res.data);
           } else {
             setIsAuth(false);
           }
         } catch (error) {
           setIsAuth(false);
-          setUser(null);
         }
       }
     }
+    console.log(isAuth)
     verifyLogin();
   }, []);
 /*
@@ -94,7 +89,6 @@ export const AuthProvider = ({ children }) => {
         //signup,
         signin,
         signout,
-        user,
         isAuth,
         //updateProfile
       }}

@@ -3,7 +3,7 @@ import { RiSendPlane2Line } from 'react-icons/ri';
 import { createComment } from '../../services/Comments/Http';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useAuth} from '../AuthVerify/AuthContext';
+import { useAuth} from '../../AuthVerify/AuthContext';
 
 function CommentForm({ postid }) {
     const [commentText, setCommentText] = useState('');

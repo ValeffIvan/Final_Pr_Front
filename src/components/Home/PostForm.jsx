@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthVerify/AuthContext';
+import { useAuth } from '../../AuthVerify/AuthContext';
 import { createPost } from '../../services/Posts/Http';
 
 function FormPost() {

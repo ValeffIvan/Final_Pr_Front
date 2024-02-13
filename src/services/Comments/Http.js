@@ -14,15 +14,8 @@ export const createComment = async (postId,Comments) => {
     return rsp;
 }
 
-export const GetPosts = async () => {
-    let url = 'Posts';
-    let rsp = await GET(url);
-
-    return rsp;
-}
-
-export const GetPostsById = async (id) => {
-    let url = 'Posts/byauthor';
+export const GetCommentsByPost = async (id) => {
+    let url = 'Comments/bypost';
     let rsp = await GET(url,id);
 
     return rsp;

@@ -11,8 +11,8 @@ import Home from './pages/Home'
 import Perfil from './pages/Usuario'
 import Comunidad from "./pages/Comunidad";
 import Navbar from "./components/Navbar/Navbar";
-import { AuthProvider } from "./components/AuthVerify/AuthContext";
-import { Redirect } from "./components/AuthVerify/Redirect";
+import { AuthProvider } from "./AuthVerify/AuthContext";
+import { Redirect } from "./AuthVerify/Redirect";
 import "./App.css";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
