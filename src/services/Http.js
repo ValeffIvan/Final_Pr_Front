@@ -12,7 +12,7 @@ export async function POSTU(url, file){
         method:'POST',
         mode:'cors',
         headers:{
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}` || ''
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
         },
         body: data
     })
@@ -30,7 +30,7 @@ export async function POST(url, request){
         mode:'cors',
         headers:{
             'Content-Type':'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}` || ''
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
         },
         body: JSON.stringify(request)
     })
@@ -41,17 +41,15 @@ export async function POST(url, request){
 
 
 export async function GET(url, request = null){
-
     let uri = "";
     if(request){
-        uri = '?' + new URLSearchParams(request).toString();
+        uri = '/' + request;
     }
-
     return await fetch(backendurl + url + uri, {
         method:'GET',
         mode:'cors',
         headers:{
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}` || ''
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
         }
     })
     .then((res) => res.json())
@@ -65,7 +63,7 @@ export async function PATCH(url, request){
         method:'PATCH',
         mode:'cors',
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}` || '',
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || '',
             'Content-Type':'application/json'
         },
         body: JSON.stringify(request)
@@ -81,7 +79,7 @@ export async function PUT(url, request){
         method:'PUT',
         mode:'cors',
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}` || '',
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || '',
             'Content-Type':'application/json'
         },
         body: JSON.stringify(request)
@@ -103,7 +101,7 @@ export async function DELETE(url, request){
         method:'DELETE',
         mode:'cors',
         headers:{
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}` || ''
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
         }
     })
     .then((res) => res.json())

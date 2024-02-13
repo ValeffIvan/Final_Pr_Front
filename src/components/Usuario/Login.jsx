@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { LogInRequest } from '../../services/Session';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
       event.preventDefault();
-      
       try {
         const user_data = { email, password };
         const response = await LogInRequest(user_data);
-        
-        // Manejar la respuesta aquí según sea necesario
-        console.log('Respuesta del servidor:', response);
+        navigate("/");
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
       }
     };
+    
 
   return (
     <Container style={{ marginTop: '60px' }}>

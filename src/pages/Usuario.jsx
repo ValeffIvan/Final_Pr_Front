@@ -4,10 +4,15 @@ import Perfil from '../components/Usuario/Perfil';
 import Post from '../components/Home/Post';
 
 const Usuario = () => {
+
+
+
   return (
     <Container style={{ padding: '60px' }}>
       <Perfil />
-      <Post idUsuario='{}' />
+      <br />
+      <br />
+      <Post authorId={1} />
     </Container>
   );
 }

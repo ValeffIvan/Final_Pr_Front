@@ -1,20 +1,19 @@
-import { POST, GET, DELETE, PUT } from '../Services/Httpr.js';
-
-
-export const createUser = async (new_user_data) => {
-    let url = 'user/create';
-    let rsp = await POST(url, new_user_data);
-
-    return rsp;
-}
-
-export const searchUsers = async () => {
-    let url = 'tasks';
+import { POST, GET, DELETE, PUT } from '../Http.js';
+/*
+export const GetPosts = async () => {
+    let url = 'Posts';
     let rsp = await GET(url);
 
     return rsp;
 }
+*/
+export const GetUserByEmail = async (email) => {
+    let url = 'Users/byEmail';
+    let rsp = await GET(url,email);
 
+    return rsp;
+}
+/*
 export const changeUser = async (newTasks) =>{
     let url = 'tasks/'+newTasks.id;
     let tasks ={
@@ -39,3 +38,5 @@ export const addUser = async (task) =>{
     let rsp = await POST(url,tasks)
     return rsp
 }
+
+*/

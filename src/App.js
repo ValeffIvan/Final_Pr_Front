@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -11,41 +11,32 @@ import Home from './pages/Home'
 import Perfil from './pages/Usuario'
 import Comunidad from "./pages/Comunidad";
 import Navbar from "./components/Navbar/Navbar";
-import Preloader from "./components/PreLoader"
-import ScrollToTop from "./components/ScrollToTop"
-
+import { AuthProvider } from "./components/AuthVerify/AuthContext";
+import { Redirect } from "./components/AuthVerify/Redirect";
 import "./App.css";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-function App() {
-  const [load, upadateLoad] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      upadateLoad(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, []);
+export const App = () => {
 
   return (
-    <Router>
-      <Preloader load={load} />
-      <div className="App" id={load ? "no-scroll" : "scroll"}>
-        <Navbar />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/perfil" element={<Perfil />} />
-          <Route path="/comunidad" element={<Comunidad />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Navigate to="/"/>} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Navigate to="/"/>} />
+
+            <Route element={<Redirect/>}>
+              <Route path="/comunidad" element={<Comunidad />} />
+              <Route path="/perfil" element={<Perfil />} />
+            </Route>
+            
+          </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
-export default App;

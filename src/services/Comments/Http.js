@@ -1,13 +1,15 @@
 import { POST, GET, DELETE, PUT } from '../Http.js';
+import { GetUserByEmail } from '../User/Http.js';
 
-export const createPost = async (id,title,text) => {
-    let url = 'Posts';
-    const post = {
-        title: title,
-        description: text,
-        authorId: id,
-    }
-    let rsp = await POST(url, post);
+export const createComment = async (postId,Comments) => {
+    let url = 'Comments';
+    let user= await GetUserByEmail(localStorage.getItem('email'));
+    const comment = {
+        postId: postId,
+        text: Comments,
+        authorId: user.authorId
+    };
+    let rsp = await POST(url, comment);
 
     return rsp;
 }

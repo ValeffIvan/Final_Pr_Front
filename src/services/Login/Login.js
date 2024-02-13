@@ -1,6 +1,5 @@
 import { POST, GET, DELETE, PUT } from '../Services/Httpr.js';
 
-
 export const createUser = async (new_user_data) => {
     let url = 'user/create';
     let rsp = await POST(url, new_user_data);

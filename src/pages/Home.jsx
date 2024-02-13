@@ -9,6 +9,8 @@ const Home = () => {
       <br />
       <br />
       <FormPost/>  
+      <br />
+      <br />
       <Post />
     </section>
   );
