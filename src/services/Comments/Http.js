@@ -1,13 +1,11 @@
-import { POST, GET, DELETE, PUT } from '../Http.js';
-import { GetUserByEmail } from '../User/Http.js';
+import { POST, GET, DELETE, PUT } from '../Http';
 
-export const createComment = async (postId,Comments) => {
+export const createComment = async (id, postId,Comments) => {
     let url = 'Comments';
-    let user= await GetUserByEmail(localStorage.getItem('email'));
     const comment = {
         postId: postId,
         text: Comments,
-        authorId: user.authorId
+        authorId: id
     };
     let rsp = await POST(url, comment);
 
@@ -21,18 +19,21 @@ export const GetCommentsByPost = async (id) => {
     return rsp;
 }
 
-export const changeUser = async (newTasks) =>{
-    let url = 'tasks/'+newTasks.id;
-    let tasks ={
-        "description": newTasks.name
+export const editComment = async (id, postid, idComment,newComment) =>{
+    let url = 'Comments/'+id;
+    let comment ={
+        idComment: idComment,
+        text: newComment,
+        authorId: id,
+        postId: postid
     }
-    let rsp = await PUT(url,tasks);
+    let rsp = await PUT(url,comment);
 
     return rsp;
 }
 
-export const deleteTask = async (id) =>{
-    let url = 'tasks';
+export const deleteComment = async (id) =>{
+    let url = 'Comments';
     let rsp = await DELETE(url,id);
     return rsp;;
 }

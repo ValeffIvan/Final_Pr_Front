@@ -9,8 +9,9 @@ import {
 import Login from "./components/Usuario/Login";
 import Home from './pages/Home'
 import Perfil from './pages/Usuario'
-import Comunidad from "./pages/Comunidad";
+import Usuarios from "./pages/Comunidad";
 import Navbar from "./components/Navbar/Navbar";
+import ChangePassword from "./components/Usuario/ChangePassword"
 import { AuthProvider } from "./AuthVerify/AuthContext";
 import { Redirect } from "./AuthVerify/Redirect";
 import "./App.css";
@@ -30,7 +31,8 @@ export const App = () => {
             <Route path="*" element={<Navigate to="/"/>} />
 
             <Route element={<Redirect/>}>
-              <Route path="/comunidad" element={<Comunidad />} />
+              <Route path="/cambiarPassword" element={<ChangePassword />} />
+              <Route path="/usuarios" element={<Usuarios />} />
               <Route path="/perfil" element={<Perfil />} />
             </Route>
             

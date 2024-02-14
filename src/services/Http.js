@@ -21,6 +21,21 @@ export async function POSTU(url, file){
     .catch((err) => err);
 }
 
+export async function LoginPost(url, request){
+    
+    return await fetch(backendurl + url, {
+        method:'POST',
+        mode:'cors',
+        headers:{
+            'Content-Type':'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || ''
+        },
+        body: JSON.stringify(request)
+    })
+    .then((res) => res.text())
+    .then((res) => res)
+    .catch((err) => err);
+}
 
 
 export async function POST(url, request){
@@ -57,21 +72,6 @@ export async function GET(url, request = null){
     .catch((err) => err);
 }
 
-export async function PATCH(url, request){
-
-    return await fetch(backendurl + url, {
-        method:'PATCH',
-        mode:'cors',
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}` || '',
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify(request)
-    })
-    .then((res) => res.json())
-    .then((res) => res)
-    .catch((err) => err);
-}
 
 export async function PUT(url, request){
 

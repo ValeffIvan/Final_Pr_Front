@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Table } from "react-bootstrap";
 
-function Personas (props) {
+function Usuarios () {
     return (
         <Container className="d-flex justify-content-center mt-5">
           <Table striped bordered hover>
@@ -28,4 +28,4 @@ function Personas (props) {
       );
 }
 
-export default Personas
+export default Usuarios

@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { LogInRequest, ValidateToken } from "../services/Session";
+import { jwtDecode } from "jwt-decode";
+import { GetUserByEmail } from "../services/User/Http";
 
 export const AuthContext = createContext();
 
@@ -11,7 +13,14 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
 
-  //informe si esta o no Autenticado
+  const [user, setUser] = useState({
+    idUsers: 0,
+    username: "",
+    email: "",
+    createTime: "",
+    role: "",
+  });
+
   const [isAuth, setIsAuth] = useState(false);
 
   const [errors, setErrors] = useState([]);
@@ -29,20 +38,30 @@ export const AuthProvider = ({ children }) => {
     }
   };
 */
-  // Validación del Login
+
   const signin = async (user) => {
     try {
       const res = await LogInRequest(user);
+      console.log(res)
+      localStorage.setItem('token',res.token);
+      res.user.createTime = new Date(res.user.createTime).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      setUser(res.user)
       setIsAuth(true);
     } catch (error) {
-
+      console.log(error)
     }
   };
 
-  //Logout
 
   const signout = () => {
-    localStorage.clear();
+    //localStorage.clear();
+    setUser({    
+      idUsers: 0,
+      username: "",
+      email: "",
+      createTime: "",
+      role: "",
+    });
     setIsAuth(false);
   };
 
@@ -58,20 +77,26 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function verifyLogin() {
       const token = localStorage.getItem('token');
+      console.log(token)
       if (token) {
         try {
           const res = await ValidateToken(token);
           if (res) {
+            console.log(user)
             setIsAuth(true);
           } else {
             setIsAuth(false);
+            console.log("token invalido")
+            //localStorage.clear();
           }
         } catch (error) {
           setIsAuth(false);
+          console.log(error)
+          //localStorage.clear();
         }
       }
     }
-    console.log(isAuth)
+    console.log(user)
     verifyLogin();
   }, []);
 /*
@@ -90,6 +115,8 @@ export const AuthProvider = ({ children }) => {
         signin,
         signout,
         isAuth,
+        user,
+        errors,
         //updateProfile
       }}
     >

@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import { LogInRequest } from '../../services/Session';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../../AuthVerify/AuthContext';
 
 function Login() {
+  
+    const {isAuth, signin} = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+   
+   
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
         const user_data = { email, password };
-        const response = await LogInRequest(user_data);
-        navigate("/");
+        signin(user_data)
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
       }
     };
-    
+
+  useEffect(() => {
+    if (isAuth) navigate("/");
+  }, [isAuth]);
 
   return (
     <Container style={{ marginTop: '60px' }}>

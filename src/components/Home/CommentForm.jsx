@@ -8,7 +8,7 @@ import { useAuth} from '../../AuthVerify/AuthContext';
 function CommentForm({ postid }) {
     const [commentText, setCommentText] = useState('');
     const navigate = useNavigate();
-    const {isAuth} = useAuth();
+    const {user, isAuth} = useAuth();
 
     const handleCommentChange = (event) => {
         setCommentText(event.target.value);
@@ -18,7 +18,7 @@ function CommentForm({ postid }) {
         event.preventDefault();
         if(isAuth){
             try{
-                var response = await createComment(postid, commentText);
+                var response = await createComment(user.idUsers, postid, commentText);
                 console.log(response);
                 window.location.reload();
             }catch (error) {

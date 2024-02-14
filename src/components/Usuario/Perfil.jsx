@@ -1,35 +1,30 @@
 import React, { useState } from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom'; 
+import { useAuth } from '../../AuthVerify/AuthContext';
 
 const Perfil = () => {
-  // Supongamos que estos son los datos del usuario obtenidos de algún lugar
-  const [user, setUser] = useState({
-    name: 'Usuario Ejemplo',
-    email: 'usuario@example.com',
-    password: '********', // La contraseña no se debería mostrar directamente, pero este es solo un ejemplo
-  });
 
-  // Función para cambiar la contraseña
-  const handleChangePassword = () => {
-    // Aquí iría la lógica para cambiar la contraseña
-    console.log('Cambiando contraseña...');
-  };
+  const {user} = useAuth();
 
   return (
-    <Container className="mt-5">
-      <Card style={{ width: '100%' }}>
+    <Container className="mt-5 text-center">
+      <Card style={{ width: '50%', margin: '0 auto' }}> 
         <Card.Body>
-          <Card.Title>Perfil de Usuario</Card.Title>
+          <Card.Title> <strong>{user.username}</strong></Card.Title>
           <Card.Text>
-            <strong>Nombre:</strong> {user.name}<br />
             <strong>Email:</strong> {user.email}<br />
-            <strong>Contraseña:</strong> {user.password}<br />
+            <strong>Fecha de creacion:</strong> {user.createTime}<br />
           </Card.Text>
-          <Button variant="primary" onClick={handleChangePassword}>Cambiar Contraseña</Button>
+          <div className="mt-3">
+            <Link to="/cambiarPassword">
+              <Button variant="primary">Cambiar Contraseña</Button>
+            </Link>
+          </div>
         </Card.Body>
       </Card>
     </Container>
   );
 };
 
-export default Perfil
+export default Perfil;

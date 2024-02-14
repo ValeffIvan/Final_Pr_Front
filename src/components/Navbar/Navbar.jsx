@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-// import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-// import { CgGitFork } from "react-icons/cg";
 import {
-  // AiFillStar,
   AiOutlineHome,
-  AiOutlineContacts
+  AiOutlineUser,
+  AiOutlineTeam 
 } from "react-icons/ai";
+import { useAuth } from "../../AuthVerify/AuthContext";
 
 function NavBar() {
+
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  const {user} = useAuth();
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -53,17 +54,18 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            {/* SI ES ADMINISTRADOR QUE VEA ESTA PESATANIA, SINO NO
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/Comunidad"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineContacts style={{ marginBottom: "2px" }} /> Comunidad
-              </Nav.Link>
-            </Nav.Item>
-            */}
+            
+            {/*user.role==="admin" && (
+              <Nav.Item>
+                <Nav.Link
+                  as={Link}
+                  to="/usuarios"
+                  onClick={() => updateExpanded(false)}
+                >
+                  <AiOutlineTeam style={{ marginBottom: "2px" }} /> Usuarios
+                </Nav.Link>
+              </Nav.Item>
+            )*/}
 
             <Nav.Item>
               <Nav.Link
@@ -71,7 +73,7 @@ function NavBar() {
                 to="/perfil"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineContacts style={{ marginBottom: "2px" }} /> Perfil
+                <AiOutlineUser style={{ marginBottom: "2px" }} /> Perfil
               </Nav.Link>
             </Nav.Item>
           </Nav>

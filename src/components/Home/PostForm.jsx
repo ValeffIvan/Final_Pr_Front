@@ -8,7 +8,7 @@ function FormPost() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
-    const { isAuth } = useAuth();
+    const { isAuth, user } = useAuth();
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
@@ -22,8 +22,7 @@ function FormPost() {
         event.preventDefault();
         if (isAuth) {
             try {
-                const id = localStorage.getItem('idUsers');
-                const response = await createPost(id,title,content);
+                const response = await createPost(user.idUsers, title, content);
                 console.log(response)
                 window.location.reload();
             } catch (error) {
