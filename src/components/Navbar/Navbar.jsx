@@ -55,7 +55,7 @@ function NavBar() {
             </Nav.Item>
 
             
-            {/*user.role==="admin" && (
+            {user.role==="admin" && (
               <Nav.Item>
                 <Nav.Link
                   as={Link}
@@ -65,7 +65,7 @@ function NavBar() {
                   <AiOutlineTeam style={{ marginBottom: "2px" }} /> Usuarios
                 </Nav.Link>
               </Nav.Item>
-            )*/}
+            )}
 
             <Nav.Item>
               <Nav.Link

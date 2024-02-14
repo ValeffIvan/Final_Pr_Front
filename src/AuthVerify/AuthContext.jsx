@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { LogInRequest, ValidateToken } from "../services/Session";
+import { LogInRequest, ValidateToken, GetUserByEmail } from "../services/User/Http";
 import { jwtDecode } from "jwt-decode";
-import { GetUserByEmail } from "../services/User/Http";
 
 export const AuthContext = createContext();
 
@@ -77,22 +76,23 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function verifyLogin() {
       const token = localStorage.getItem('token');
-      console.log(token)
       if (token) {
         try {
           const res = await ValidateToken(token);
           if (res) {
-            console.log(user)
+            const decodeUser = jwtDecode(token) 
+            const userDetail = await GetUserByEmail(decodeUser.email);
+            setUser(userDetail)
             setIsAuth(true);
           } else {
             setIsAuth(false);
             console.log("token invalido")
-            //localStorage.clear();
+            localStorage.clear();
           }
         } catch (error) {
           setIsAuth(false);
           console.log(error)
-          //localStorage.clear();
+          localStorage.clear();
         }
       }
     }

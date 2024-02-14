@@ -44,7 +44,6 @@ function PostContent (props)  {
 };
 
 useEffect(() => {
-  console.log(props)
   setEditedText(props.post.description);
   setEditedTitle(props.post.title)
 }, []);
