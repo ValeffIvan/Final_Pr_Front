@@ -1,6 +1,6 @@
 import {Form, Button, InputGroup} from 'react-bootstrap';
 import { RiSendPlane2Line } from 'react-icons/ri';
-import { createComment } from '../../services/Comments/Http';
+import { CreateComment } from '../../services/Comments/Http';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth} from '../../AuthVerify/AuthContext';
@@ -18,7 +18,7 @@ function CommentForm({ postid }) {
         event.preventDefault();
         if(isAuth){
             try{
-                var response = await createComment(user.idUsers, postid, commentText);
+                var response = await CreateComment(user.idUsers, postid, commentText);
                 console.log(response);
                 window.location.reload();
             }catch (error) {

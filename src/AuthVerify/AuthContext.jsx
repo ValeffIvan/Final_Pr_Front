@@ -38,10 +38,9 @@ export const AuthProvider = ({ children }) => {
   };
 */
 
-  const signin = async (user) => {
+  const signin = async (userData) => {
     try {
-      const res = await LogInRequest(user);
-      console.log(res)
+      const res = await LogInRequest(userData);
       localStorage.setItem('token',res.token);
       res.user.createTime = new Date(res.user.createTime).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
       setUser(res.user)
@@ -53,7 +52,7 @@ export const AuthProvider = ({ children }) => {
 
 
   const signout = () => {
-    //localStorage.clear();
+    localStorage.clear();
     setUser({    
       idUsers: 0,
       username: "",
@@ -86,7 +85,6 @@ export const AuthProvider = ({ children }) => {
             setIsAuth(true);
           } else {
             setIsAuth(false);
-            console.log("token invalido")
             localStorage.clear();
           }
         } catch (error) {
@@ -96,7 +94,6 @@ export const AuthProvider = ({ children }) => {
         }
       }
     }
-    console.log(user)
     verifyLogin();
   }, []);
 /*

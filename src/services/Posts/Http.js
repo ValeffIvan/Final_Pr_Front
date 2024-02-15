@@ -1,6 +1,6 @@
 import { POST, GET, DELETE, PUT } from '../Http.js';
 
-export const createPost = async (id,title,text) => {
+export const CreatePost = async (id,title,text) => {
     let url = 'Posts';
     const currentDate = new Date(); 
     const post = {

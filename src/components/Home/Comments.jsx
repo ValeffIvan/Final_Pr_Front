@@ -3,7 +3,7 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 import { GetCommentsByPost } from "../../services/Comments/Http";
 import { useAuth } from "../../AuthVerify/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { deleteComment, editComment } from "../../services/Comments/Http";
+import { DeleteComment, EditComment } from "../../services/Comments/Http";
 import { PencilFill, TrashFill, Check2, X } from 'react-bootstrap-icons';
 
 function Comments (props)  {
@@ -29,7 +29,7 @@ function Comments (props)  {
     setIsEditing(false);
     if(isAuth){
       try{
-          var response = await editComment(user.idUsers, props.postId,commentId,editedText);
+          await EditComment(user.idUsers, props.postId,commentId,editedText);
           window.location.reload();
       }catch (error) {
           console.error('Error al crear el comentario:', error);
@@ -48,7 +48,7 @@ const handleDeleteComment = async (commentId) => {
     if(isAuth){
         try{
             console.log(commentId)
-            var response = await deleteComment(commentId);
+            var response = await DeleteComment(commentId);
             console.log(response)
             window.location.reload();
         }catch (error) {

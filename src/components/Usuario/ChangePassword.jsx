@@ -20,8 +20,7 @@ const ChangePassword = () => {
     try {
       if(isAuth)
       {
-        var response = await changePassword(user.idUsers, password);
-        console.log(response);
+        await ChangePassword(user.idUsers, password);
         signout();
         navigate('/login');
       }else{

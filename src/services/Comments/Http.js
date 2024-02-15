@@ -1,6 +1,6 @@
 import { POST, GET, DELETE, PUT } from '../Http';
 
-export const createComment = async (id, postId,Comments) => {
+export const CreateComment = async (id, postId,Comments) => {
     let url = 'Comments';
     const comment = {
         postId: postId,
@@ -19,7 +19,7 @@ export const GetCommentsByPost = async (id) => {
     return rsp;
 }
 
-export const editComment = async (id, postid, idComment,newComment) =>{
+export const EditComment = async (id, postid, idComment,newComment) =>{
     let url = 'Comments/'+id;
     let comment ={
         idComment: idComment,
@@ -32,13 +32,13 @@ export const editComment = async (id, postid, idComment,newComment) =>{
     return rsp;
 }
 
-export const deleteComment = async (id) =>{
+export const DeleteComment = async (id) =>{
     let url = 'Comments';
     let rsp = await DELETE(url,id);
     return rsp;;
 }
 
-export const addUser = async (task) =>{
+export const AddUser = async (task) =>{
     let url = 'tasks';
     let tasks ={
         "description": task

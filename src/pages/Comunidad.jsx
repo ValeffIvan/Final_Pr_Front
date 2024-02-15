@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container } from "react-bootstrap";
-import Personas from '../components/Comunidad/Personas';
+import Users from '../components/Comunidad/Users';
 
 const Comunidad = () => {
   return (
     <Container style={{ padding: '60px' }}>
-        <Personas />
+        <Users />
     </Container>
   );
 }

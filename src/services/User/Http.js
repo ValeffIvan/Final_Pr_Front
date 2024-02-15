@@ -1,5 +1,11 @@
 import { POST, GET } from '../Http';
 
+export const GetUsers = async () => {
+  let url = 'Users';
+  let rsp = await GET(url);
+  return rsp;
+}
+
 export const LogInRequest = async (user_data) => {
     let url = 'Auth/login';
     let rsp = await POST(url, user_data);

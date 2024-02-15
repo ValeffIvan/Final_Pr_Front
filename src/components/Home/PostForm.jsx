@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthVerify/AuthContext';
-import { createPost } from '../../services/Posts/Http';
+import { CreatePost } from '../../services/Posts/Http';
 
 function FormPost() {
     const [title, setTitle] = useState('');
@@ -22,8 +22,7 @@ function FormPost() {
         event.preventDefault();
         if (isAuth) {
             try {
-                const response = await createPost(user.idUsers, title, content);
-                console.log(response)
+                CreatePost(user.idUsers, title, content);
                 window.location.reload();
             } catch (error) {
                 console.error('Error al crear el post:', error);

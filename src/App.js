@@ -17,6 +17,7 @@ import { Redirect } from "./AuthVerify/Redirect";
 import "./App.css";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import UserForm from "./components/Comunidad/UserForm";
 
 
 export const App = () => {
@@ -34,6 +35,7 @@ export const App = () => {
               <Route path="/cambiarPassword" element={<ChangePassword />} />
               <Route path="/usuarios" element={<Usuarios />} />
               <Route path="/perfil" element={<Perfil />} />
+              <Route path="/userForm" element={<UserForm/>}/>
             </Route>
             
           </Routes>
