@@ -2,13 +2,12 @@ import { POST, GET, DELETE, PATCH } from '../Http.js';
 
 export const CreatePost = async (id,title,text) => {
     let url = 'Posts';
-    const currentDate = new Date(); 
     const post = {
         title: title,
         description: text,
         authorId: id,
-        createTime: currentDate
     }
+
     let rsp = await POST(url, post);
 
     return rsp;

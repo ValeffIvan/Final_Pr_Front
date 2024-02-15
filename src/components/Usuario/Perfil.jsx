@@ -14,7 +14,7 @@ const Perfil = () => {
           <Card.Title> <strong>{user.username}</strong></Card.Title>
           <Card.Text>
             <strong>Email:</strong> {user.email}<br />
-            <strong>Fecha de creacion:</strong> {user.createTime}<br />
+            <strong>Fecha de creacion:</strong> {new Date(user.createTime).toLocaleString()}<br />
           </Card.Text>
           <div className="mt-3">
             <Link to="/cambiarPassword">

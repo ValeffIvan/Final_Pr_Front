@@ -71,7 +71,7 @@ function Users () {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>{user.role}</td>
-                <td>{new Date(user.createTime).toLocaleDateString()}</td>
+                <td>{new Date(user.createTime).toLocaleString()}</td>
                 <td className="align-middle">
                   <div className="d-flex justify-content-center">
                     <Button variant="primary" onClick={() => handleModify(user)} style={{marginRight:'5px'}}>

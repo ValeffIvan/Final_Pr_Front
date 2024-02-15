@@ -17,8 +17,7 @@ function Comments (props)  {
 
   const loadComents = async () => {
     try {
-        var response;
-        response = await GetCommentsByPost(props.postId);
+        var response = await GetCommentsByPost(props.postId);
         setComments(response); 
     } catch (error) {
       console.error('Error al obtener los comentarios:', error);
@@ -38,10 +37,6 @@ function Comments (props)  {
     else{
         navigate('/login');
     }
-  };
-
-  const handleChange = (e) => {
-    setEditedText(e.target.value);
   };
 
 const handleDeleteComment = async (commentId) => {
@@ -65,7 +60,7 @@ const handleDeleteComment = async (commentId) => {
   return (
     <>
       {comments.map((comment) => (
-        <div key={comment.id} style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '10px', position: 'relative' }}>
+        <div key={comment.id} style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '10px', display: 'flex', flexDirection: 'column' }}>
           {isEditing === comment.idComment ? (
             <Form onSubmit={(e) => { e.preventDefault(); handleAcceptEdit(comment.idComment); }}>
               <InputGroup>
@@ -78,9 +73,13 @@ const handleDeleteComment = async (commentId) => {
             </Form>
           ) : (
             <>
-              <div style={{flex:'1'}}>{comment.text}</div>
-              {user.idUsers === comment.authorId && (
-                <div style={{ position: 'absolute', top: '4px', right: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                <div>{comment.authorUsername}</div>
+                <div>{new Date(comment.createTime).toLocaleString()}</div>
+              </div>
+              <div style={{ flex: '1' }}>{comment.text}</div>
+              {(user.idUsers === comment.authorId || user.role==="admin")  && (
+                <div style={{ alignSelf: 'flex-end' }}>
                   <Button variant="primary" onClick={() => { setIsEditing(comment.idComment); setEditedText(comment.text); }} ><PencilFill /></Button>
                   <Button variant="danger" onClick={() => handleDeleteComment(comment.idComment)} ><TrashFill /></Button>
                 </div>
@@ -91,6 +90,7 @@ const handleDeleteComment = async (commentId) => {
       ))}
     </>
   );
+  
   
   
 };

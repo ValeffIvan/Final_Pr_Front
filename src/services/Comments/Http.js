@@ -34,12 +34,3 @@ export const DeleteComment = async (id) =>{
     let rsp = await DELETE(url,id);
     return rsp;;
 }
-
-export const AddUser = async (task) =>{
-    let url = 'tasks';
-    let tasks ={
-        "description": task
-    }
-    let rsp = await POST(url,tasks)
-    return rsp
-}

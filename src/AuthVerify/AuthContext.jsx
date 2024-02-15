@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }) => {
           if (res) {
             const decodeUser = jwtDecode(token) 
             const userDetail = await GetUserByEmail(decodeUser.email);
+            userDetail.createTime = new Date(userDetail.createTime).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
             setUser(userDetail)
             setIsAuth(true);
           } else {

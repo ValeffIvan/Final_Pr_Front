@@ -45,6 +45,7 @@ useEffect(() => {
   setEditedText(props.post.description);
   setEditedTitle(props.post.title)
 }, []);
+
 return (
   <>
     {isEditing === props.post.idPost ? (
@@ -62,6 +63,14 @@ return (
       </Form>
     ) : (
       <>
+        <div className="d-flex justify-content-between align-items-center">
+          <div>
+            <span>{props.post.authorUsername}</span>
+          </div>
+          <div>
+            <span>{new Date(props.post.createTime).toLocaleString()}</span>
+          </div>
+        </div>
         <Card.Title className="mb-3 text-center">{props.post.title}</Card.Title>
         <Card.Text className="mb-3 text-center">{props.post.description}</Card.Text>
         {(user.idUsers === props.post.authorId || user.role === "admin") && (
@@ -76,6 +85,7 @@ return (
     )}
   </>
 );
+
 
 }
 export default PostContent
