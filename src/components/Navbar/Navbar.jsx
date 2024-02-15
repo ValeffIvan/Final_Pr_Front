@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
+import { Container, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
   AiOutlineHome,
   AiOutlineUser,
-  AiOutlineTeam 
+  AiOutlineTeam,
+  AiOutlineLogin,
+  AiOutlineLogout 
 } from "react-icons/ai";
 import { useAuth } from "../../AuthVerify/AuthContext";
 
@@ -14,7 +16,8 @@ function NavBar() {
 
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
-  const {user} = useAuth();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const {user, signout, isAuth} = useAuth();
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -67,15 +70,34 @@ function NavBar() {
               </Nav.Item>
             )}
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/perfil"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> Perfil
-              </Nav.Link>
-            </Nav.Item>
+            {isAuth && (
+              <Nav.Item className="d-flex align-items-center">
+                <Dropdown show={showDropdown} onToggle={(isOpen) => setShowDropdown(isOpen)}>
+                  <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
+                    <AiOutlineUser style={{ marginBottom: "2px" }} /> Perfil
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={Link} to="/perfil">
+                      <AiOutlineUser style={{ marginRight: "5px" }} /> Mi Perfil
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => {
+                      signout();
+                      setShowDropdown(false);
+                    }}>
+                      <AiOutlineLogout style={{ marginRight: "5px" }} /> Cerrar Sesión
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Nav.Item>
+            )}
+
+            {!isAuth && (
+              <Nav.Item>
+                <Nav.Link as={Link} to="/login">
+                  <AiOutlineLogin style={{ marginBottom: "2px" }} /> Iniciar Sesión
+                </Nav.Link>
+              </Nav.Item>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

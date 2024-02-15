@@ -1,4 +1,4 @@
-import { POST, GET, DELETE, PUT } from '../Http.js';
+import { POST, GET, DELETE, PATCH } from '../Http.js';
 
 export const CreatePost = async (id,title,text) => {
     let url = 'Posts';
@@ -28,21 +28,19 @@ export const GetPostsByAuthor = async (id) => {
     return rsp;
 }
 
-export const deletePost = async (id) =>{
+export const DeletePost = async (id) =>{
     let url = 'Posts';
     let rsp = await DELETE(url,id);
     return rsp;;
 }
 
-export const editPost = async (id, idPost, title, description) =>{
-    let url = 'Posts/'+id;
+export const EditPost = async (idPost, title, description) =>{
+    let url = 'Posts/'+idPost;
     let post ={
-        idPost: idPost,
         title: title,
         description: description,
-        authorId : id,
     }
-    let rsp = await PUT(url,post);
+    let rsp = await PATCH(url,post);
 
     return rsp;
 }

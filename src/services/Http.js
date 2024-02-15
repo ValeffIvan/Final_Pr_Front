@@ -108,3 +108,19 @@ export async function DELETE(url, request){
     .then((res) => res)
     .catch((err) => err);
 }
+
+export async function PATCH(url, request){
+
+    return await fetch(backendurl + url, {
+        method:'PATCH',
+        mode:'cors',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}` || '',
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(request)
+    })
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => err);
+}

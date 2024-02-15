@@ -1,4 +1,4 @@
-import { POST, GET } from '../Http';
+import { POST, GET, PATCH, DELETE } from '../Http';
 
 export const GetUsers = async () => {
   let url = 'Users';
@@ -21,5 +21,23 @@ export const ValidateToken = async (token) =>{
 export const GetUserByEmail = async (email) => {
   let url = 'Users/byEmail';
   let rsp = await GET(url,email);
+  return rsp;
+}
+
+export const CreateUser = async (user_data) => {
+  let url = 'Users';
+  let rsp = await POST(url, user_data);
+  return rsp;
+}
+
+export const EditUser = async (id, user_data) => {
+  let url = 'Users/'+ id;
+  let rsp = await PATCH(url, user_data);
+  return rsp;
+}
+
+export const DeleteUser = async (id) => {
+  let url = 'Users/'+ id;
+  let rsp = await DELETE(url);
   return rsp;
 }

@@ -1,30 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, Container } from "react-bootstrap";
 import { GetUsers } from "../../services/User/Http"
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../AuthVerify/AuthContext";
+import { DeleteUser } from "../../services/User/Http"
 
 function Users () {
 
+  const {isAuth} = useAuth();
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const loadUsers = async () => {
     try {
-      const allUsers = await GetUsers()
+      const allUsers = await GetUsers();
       setUsers(allUsers); 
     } catch (error) {
       console.error(error);
     }
   };
   
-  const handleDelete = ()=>{
-    return null;
+  const handleDelete = async (idUsuario)=>{
+    if(isAuth){
+        try{
+          await DeleteUser(idUsuario);
+          window.location.reload();
+        }catch (error) {
+            console.error(error);
+            navigate('/login');
+        }
+    }else{
+        navigate('/login');
+    }
   }
 
   const handleModify = (user)=>{
-    console.log(user)
-    navigate("/userForm", {userData:{user}});
+    navigate("/userForm", {state:{user}});
   }
   
   const addUser = () =>{
@@ -36,43 +48,49 @@ function Users () {
   }, []);
 
   return (
-    <div>
-      <div className="d-flex justify-content-end mb-2 mt-2">
-        <Button variant="success" onClick={() => addUser()}>Agregar Usuario</Button>
+    <Container className="mt-5">
+      <div className="d-flex justify-content-end mb-3">
+        <Button variant="success" onClick={addUser}>Agregar Usuario</Button>
       </div>
-      <Table striped bordered hover>
-        <thead style={{ color: 'white' }}>
-          <tr>
-            <th>#</th>
-            <th>Nombre de Usuario</th>
-            <th>Email</th>
-            <th>Rol</th>
-            <th>Fecha de creación</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
-              <td style={{ color: 'white' }}>{user.idUsers}</td>
-              <td style={{ color: 'white' }}>{user.username}</td>
-              <td style={{ color: 'white' }}>{user.email}</td>
-              <td style={{ color: 'white' }}>{user.role}</td>
-              <td style={{ color: 'white' }}>{new Date(user.createTime).toLocaleDateString()}</td>
-              <td>
-                <Button variant="primary" onClick={() => handleModify(user)}>
-                  <FaEdit style={{ marginRight: '5px' }} /> Modificar
-                </Button>
-                <Button variant="danger" onClick={() => handleDelete(user.idUsers)}>
-                  <FaTrash style={{ marginRight: '5px' }} /> Eliminar
-                </Button>
-              </td>
+      <div className="table-responsive">
+        <Table striped bordered hover style={{ backgroundColor: '#f8f9fa', borderRadius: '10px' }} className="text-center">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre de Usuario</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th>Fecha de creación</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={index}>
+                <td>{user.idUsers}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td>{new Date(user.createTime).toLocaleDateString()}</td>
+                <td className="align-middle">
+                  <div className="d-flex justify-content-center">
+                    <Button variant="primary" onClick={() => handleModify(user)} style={{marginRight:'5px'}}>
+                      <FaEdit className="mr-1" /> Modificar
+                    </Button>
+                    <Button variant="danger" onClick={() => handleDelete(user.idUsers)}>
+                      <FaTrash className="mr-1" /> Eliminar
+                    </Button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </Container>
   );
+  
+  
+  
 };
-
 export default Users

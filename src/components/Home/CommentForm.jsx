@@ -18,8 +18,7 @@ function CommentForm({ postid }) {
         event.preventDefault();
         if(isAuth){
             try{
-                var response = await CreateComment(user.idUsers, postid, commentText);
-                console.log(response);
+                await CreateComment(user.idUsers, postid, commentText);
                 window.location.reload();
             }catch (error) {
                 console.error('Error al crear el comentario:', error);

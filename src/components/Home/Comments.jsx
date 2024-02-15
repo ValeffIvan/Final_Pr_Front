@@ -29,7 +29,7 @@ function Comments (props)  {
     setIsEditing(false);
     if(isAuth){
       try{
-          await EditComment(user.idUsers, props.postId,commentId,editedText);
+          await EditComment(commentId,editedText);
           window.location.reload();
       }catch (error) {
           console.error('Error al crear el comentario:', error);
@@ -47,9 +47,7 @@ function Comments (props)  {
 const handleDeleteComment = async (commentId) => {
     if(isAuth){
         try{
-            console.log(commentId)
-            var response = await DeleteComment(commentId);
-            console.log(response)
+            await DeleteComment(commentId);
             window.location.reload();
         }catch (error) {
             console.error('Error al crear el comentario:', error);
@@ -66,12 +64,12 @@ const handleDeleteComment = async (commentId) => {
 
   return (
     <>
-      {comments.map((comment, index) => (
+      {comments.map((comment) => (
         <div key={comment.id} style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '10px', position: 'relative' }}>
-          {isEditing == comment.idComment ? (
-            <Form onSubmit={() => handleAcceptEdit(comment.idComment)}>
+          {isEditing === comment.idComment ? (
+            <Form onSubmit={(e) => { e.preventDefault(); handleAcceptEdit(comment.idComment); }}>
               <InputGroup>
-                <Form.Control type="text" value={editedText} onChange={handleChange} />
+                <Form.Control type="text" value={editedText} onChange={(e) => setEditedText(e.target.value)} />
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <Button variant="outline-success" type="submit" ><Check2 /></Button>
                   <Button variant="outline-danger" onClick={() => setIsEditing(0)} ><X /></Button>
@@ -80,10 +78,10 @@ const handleDeleteComment = async (commentId) => {
             </Form>
           ) : (
             <>
-              <div>{comment.text}</div>
-              {user.idUsers == comment.authorId && (
-                <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
-                  <Button variant="primary" onClick={() => setIsEditing(comment.idComment)} ><PencilFill /></Button>
+              <div style={{flex:'1'}}>{comment.text}</div>
+              {user.idUsers === comment.authorId && (
+                <div style={{ position: 'absolute', top: '4px', right: '10px' }}>
+                  <Button variant="primary" onClick={() => { setIsEditing(comment.idComment); setEditedText(comment.text); }} ><PencilFill /></Button>
                   <Button variant="danger" onClick={() => handleDeleteComment(comment.idComment)} ><TrashFill /></Button>
                 </div>
               )}
@@ -93,6 +91,7 @@ const handleDeleteComment = async (commentId) => {
       ))}
     </>
   );
+  
   
 };
   

@@ -23,20 +23,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
 
   const [errors, setErrors] = useState([]);
-/*
-  //datos del registro
-  const signup = async (user) => {
-    try {
-      const res = await registerReq(user);
-      //actualizacion del usuario
-      setUser(res.data);
-      setIsAuth(true);
-    } catch (error) {
-      
-      setErrors(error.response.data);
-    }
-  };
-*/
 
   const signin = async (userData) => {
     try {
@@ -96,25 +82,15 @@ export const AuthProvider = ({ children }) => {
     }
     verifyLogin();
   }, []);
-/*
-    const updateProfile = async (id, user) => {
-    try {
-      const res = await updateProfileReq(id, user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-*/
+
   return (
     <AuthContext.Provider
       value={{
-        //signup,
         signin,
         signout,
         isAuth,
         user,
         errors,
-        //updateProfile
       }}
     >
       {children}
