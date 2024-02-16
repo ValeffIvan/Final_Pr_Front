@@ -1,4 +1,4 @@
-import { POST, GET, DELETE, PATCH } from '../Http';
+import { POST, GET, DELETE, PUT } from '../Http';
 
 export const CreateComment = async (id, postId,Comments) => {
     let url = 'Comments';
@@ -24,7 +24,7 @@ export const EditComment = async (idComment,newComment) =>{
     let comment ={
         text: newComment,
     }
-    let rsp = await PATCH(url,comment);
+    let rsp = await PUT(url,comment);
 
     return rsp;
 }

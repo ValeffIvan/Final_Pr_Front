@@ -1,4 +1,4 @@
-import { POST, GET, DELETE, PATCH } from '../Http.js';
+import { POST, GET, DELETE, PUT } from '../Http.js';
 
 export const CreatePost = async (id,title,text) => {
     let url = 'Posts';
@@ -39,7 +39,7 @@ export const EditPost = async (idPost, title, description) =>{
         title: title,
         description: description,
     }
-    let rsp = await PATCH(url,post);
+    let rsp = await PUT(url,post);
 
     return rsp;
 }

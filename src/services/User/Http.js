@@ -1,4 +1,4 @@
-import { POST, GET, PATCH, DELETE } from '../Http';
+import { POST, GET, PUT, DELETE } from '../Http';
 
 export const GetUsers = async () => {
   let url = 'Users';
@@ -32,7 +32,7 @@ export const CreateUser = async (user_data) => {
 
 export const EditUser = async (id, user_data) => {
   let url = 'Users/'+ id;
-  let rsp = await PATCH(url, user_data);
+  let rsp = await PUT(url, user_data);
   return rsp;
 }
 
@@ -44,6 +44,6 @@ export const DeleteUser = async (id) => {
 
 export const ChangePass = async (id,newPassword) =>{
   let url = 'Users/ChangePassword/'+{id};
-  let rsp = await PATCH(url, newPassword);
+  let rsp = await PUT(url, newPassword);
   return rsp
 }
