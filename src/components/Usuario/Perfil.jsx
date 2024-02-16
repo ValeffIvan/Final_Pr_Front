@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; 
 import { useAuth } from '../../AuthVerify/AuthContext';
@@ -6,6 +6,7 @@ import { useAuth } from '../../AuthVerify/AuthContext';
 const Perfil = () => {
 
   const {user} = useAuth();
+
 
   return (
     <Container className="mt-5 text-center">

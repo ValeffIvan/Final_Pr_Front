@@ -41,3 +41,9 @@ export const DeleteUser = async (id) => {
   let rsp = await DELETE(url);
   return rsp;
 }
+
+export const ChangePass = async (id,newPassword) =>{
+  let url = 'Users/ChangePassword/'+{id};
+  let rsp = await PATCH(url, newPassword);
+  return rsp
+}

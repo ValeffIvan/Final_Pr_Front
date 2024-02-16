@@ -22,15 +22,16 @@ export const AuthProvider = ({ children }) => {
 
   const [isAuth, setIsAuth] = useState(false);
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState('');
 
   const signin = async (userData) => {
     try {
       const res = await LogInRequest(userData);
-      localStorage.setItem('token',res.token);
-      res.user.createTime = new Date(res.user.createTime).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
-      setUser(res.user)
-      setIsAuth(true);
+      if (res.success){
+        localStorage.setItem('token',res.token);
+        setUser(res.user)
+        setIsAuth(true);
+      }  
     } catch (error) {
       console.log(error)
     }
@@ -67,7 +68,6 @@ export const AuthProvider = ({ children }) => {
           if (res) {
             const decodeUser = jwtDecode(token) 
             const userDetail = await GetUserByEmail(decodeUser.email);
-            userDetail.createTime = new Date(userDetail.createTime).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
             setUser(userDetail)
             setIsAuth(true);
           } else {

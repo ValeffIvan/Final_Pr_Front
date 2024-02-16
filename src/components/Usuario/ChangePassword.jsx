@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Card, Button, Form } from 'react-bootstrap';
 import { useAuth } from "../../AuthVerify/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { changePassword } from '../../services/Login/Login';
+import { ChangePass } from '../../services/User/Http';
 
 const ChangePassword = () => {
   const [password, setPassword] = useState('');
@@ -20,9 +20,8 @@ const ChangePassword = () => {
     try {
       if(isAuth)
       {
-        await ChangePassword(user.idUsers, password);
-        signout();
-        navigate('/login');
+        await ChangePass(user.idUsers, password);
+        navigate('/')
       }else{
         navigate('/login');
       }
@@ -43,7 +42,7 @@ const ChangePassword = () => {
                 <Form.Control
                   type="password"
                   placeholder="Ingrese su nueva contraseña"
-                  value={password} // Establece el valor del estado 'password' como valor del campo
+                  value={password} 
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
@@ -53,7 +52,7 @@ const ChangePassword = () => {
                 <Form.Control
                   type="password"
                   placeholder="Confirme su nueva contraseña"
-                  value={confirmPassword} // Establece el valor del estado 'confirmPassword' como valor del campo
+                  value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />

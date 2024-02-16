@@ -23,7 +23,6 @@ function FormPost() {
         if (isAuth) {
             try {
                 await CreatePost(user.idUsers, title, content);
-                window.location.reload();
             } catch (error) {
                 console.error('Error al crear el post:', error);
             }

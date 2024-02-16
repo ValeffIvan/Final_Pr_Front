@@ -8,14 +8,18 @@ import { DeleteUser } from "../../services/User/Http"
 
 function Users () {
 
-  const {isAuth} = useAuth();
+  const {isAuth, user, signout} = useAuth();
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const loadUsers = async () => {
     try {
-      const allUsers = await GetUsers();
-      setUsers(allUsers); 
+      if (isAuth && user.role==="admin"){
+        const allUsers = await GetUsers();
+        setUsers(allUsers); 
+      }else{
+        navigate('/')
+      }
     } catch (error) {
       console.error(error);
     }
@@ -25,7 +29,9 @@ function Users () {
     if(isAuth){
         try{
           await DeleteUser(idUsuario);
-          window.location.reload();
+          if (idUsuario===user.idUsers){
+            signout();
+          }
         }catch (error) {
             console.error(error);
             navigate('/login');
@@ -36,16 +42,16 @@ function Users () {
   }
 
   const handleModify = (user)=>{
-    navigate("/userForm", {state:{user}});
+    navigate("/userModify", {state:{user}});
   }
   
   const addUser = () =>{
-    navigate("/userForm")
+    navigate("/userCreate")
   }
 
   useEffect(() => {
     loadUsers();
-  }, []);
+  }, [handleDelete]);
 
   return (
     <Container className="mt-5">
@@ -70,7 +76,7 @@ function Users () {
                 <td>{user.idUsers}</td>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
-                <td>{user.role}</td>
+                <td>{user.role==="admin"? "Administrador" : "Usuario"}</td>
                 <td>{new Date(user.createTime).toLocaleString()}</td>
                 <td className="align-middle">
                   <div className="d-flex justify-content-center">

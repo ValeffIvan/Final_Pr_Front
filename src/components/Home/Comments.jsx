@@ -29,7 +29,6 @@ function Comments (props)  {
     if(isAuth){
       try{
           await EditComment(commentId,editedText);
-          window.location.reload();
       }catch (error) {
           console.error('Error al crear el comentario:', error);
       }
@@ -43,7 +42,6 @@ const handleDeleteComment = async (commentId) => {
     if(isAuth){
         try{
             await DeleteComment(commentId);
-            window.location.reload();
         }catch (error) {
             console.error('Error al crear el comentario:', error);
         }
@@ -55,7 +53,7 @@ const handleDeleteComment = async (commentId) => {
 
   useEffect(() => {
     loadComents();
-  }, []);
+  }, [comments]);
 
   return (
     <>

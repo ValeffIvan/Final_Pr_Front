@@ -11,13 +11,15 @@ import Home from './pages/Home'
 import Perfil from './pages/Usuario'
 import Usuarios from "./pages/Comunidad";
 import Navbar from "./components/Navbar/Navbar";
-import ChangePassword from "./components/Usuario/ChangePassword"
+import ChangePassword from "./components/Usuario/ChangePassword";
+import UserCreate from "./components/Comunidad/UserCreate";
+import UserModify from "./components/Comunidad/UserModify";
 import { AuthProvider } from "./AuthVerify/AuthContext";
 import { Redirect } from "./AuthVerify/Redirect";
 import "./App.css";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import UserForm from "./components/Comunidad/UserForm";
+
 
 
 export const App = () => {
@@ -30,12 +32,13 @@ export const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Navigate to="/"/>} />
+            <Route path="/userCreate" element={<UserCreate/>}/>
 
             <Route element={<Redirect/>}>
               <Route path="/cambiarPassword" element={<ChangePassword />} />
               <Route path="/usuarios" element={<Usuarios />} />
               <Route path="/perfil" element={<Perfil />} />
-              <Route path="/userForm" element={<UserForm/>}/>
+              <Route path="/userModify" element={<UserModify/>}/>
             </Route>
             
           </Routes>

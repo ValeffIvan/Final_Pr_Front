@@ -27,7 +27,7 @@ function Post (props)  {
 
   useEffect(() => {
     loadPosts();
-  }, []);
+  }, [posts]);
 
   return (
     <Container>
