@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Container, Card, Accordion} from 'react-bootstrap';
 import PostContent from "./PostContent";
-import { GetPosts, GetPostsByAuthor } from "../../services/Posts/Http";
+import { GetPosts, GetPostsByAuthor } from "../../services/HttpPosts";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 

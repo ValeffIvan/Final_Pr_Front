@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import { GetCommentsByPost } from "../../services/Comments/Http";
+import { GetCommentsByPost } from "../../services/HttpComments";
 import { useAuth } from "../../AuthVerify/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { DeleteComment, EditComment } from "../../services/Comments/Http";
+import { DeleteComment, EditComment } from "../../services/HttpComments";
 import { PencilFill, TrashFill, Check2, X } from 'react-bootstrap-icons';
 
 function Comments (props)  {
@@ -76,7 +76,7 @@ const handleDeleteComment = async (commentId) => {
                 <div>{new Date(comment.createTime).toLocaleString()}</div>
               </div>
               <div style={{ flex: '1' }}>{comment.text}</div>
-              {(user.idUsers === comment.authorId || user.role==="admin")  && (
+              {(user.idUsers === comment.authorId || user.role==="Administrador")  && (
                 <div style={{ alignSelf: 'flex-end' }}>
                   <Button variant="primary" onClick={() => { setIsEditing(comment.idComment); setEditedText(comment.text); }} ><PencilFill /></Button>
                   <Button variant="danger" onClick={() => handleDeleteComment(comment.idComment)} ><TrashFill /></Button>

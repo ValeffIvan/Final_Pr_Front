@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthVerify/AuthContext';
-import { CreatePost } from '../../services/Posts/Http';
+import { CreatePost } from '../../services/HttpPosts';
 
 function FormPost() {
     const [title, setTitle] = useState('');

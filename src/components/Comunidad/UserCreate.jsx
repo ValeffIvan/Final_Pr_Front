@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, InputGroup, Alert } from 'react-bootstrap';
-import { useNavigate, useLocation  } from "react-router-dom";
-import { CreateUser} from '../../services/User/Http';
+import { useNavigate } from "react-router-dom";
+import { CreateUser} from '../../services/HttpUser';
 import { useAuth } from '../../AuthVerify/AuthContext';
-
-
+import { GetRoles } from '../../services/HttpRoles';
 
 const UserCreate = () => {
 
@@ -15,11 +14,17 @@ const UserCreate = () => {
     const [rol, setRol] = useState(1);
     const {isAuth, signin} = useAuth();
     const [fromLogin, setFromLogin] = useState(0);
+    const [roles, setRoles] = useState([])
     const navigate = useNavigate();
 
-    const loadUser = () =>{
+    const loadUser = async() =>{
         try{
-            if (!isAuth) setFromLogin(1);
+            if (!isAuth) {
+                setFromLogin(1);
+            }else{
+                const getRoles = await GetRoles();
+                setRoles(getRoles);
+            }
         }catch (error){
             console.log(error);
             navigate('/');
@@ -83,8 +88,9 @@ const UserCreate = () => {
                 <Form.Group controlId="rol" className="mt-3">
                     <Form.Label>Rol</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={(e) => setRol(e.target.value)}>
-                        <option value={1}>Usuario</option>
-                        <option value={2}>Administrador</option>
+                        {roles.map((rol) => (
+                            <option value={rol.idRol}>{rol.name}</option>
+                        ))}
                     </Form.Select>
                 </Form.Group>
             )}

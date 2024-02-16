@@ -3,11 +3,11 @@ import { Container, Card,  Button, Form, InputGroup, Alert  } from 'react-bootst
 import { Link, useNavigate } from 'react-router-dom'; 
 import { useAuth } from '../../AuthVerify/AuthContext';
 import { PencilFill, Check2, X } from 'react-bootstrap-icons';
-import { EditUser } from '../../services/User/Http';
+import { EditUser } from '../../services/HttpUser';
 
 const Perfil = () => {
 
-  const { isAuth, user, setUser } = useAuth();
+  const { isAuth, user } = useAuth();
   const [userData, setUserData] = useState({});
   const [isOnEditUsername, setIsOnEditUsername] = useState(false);
   const [isOnEditEmail, setIsOnEditEmail] = useState(false);
@@ -22,7 +22,7 @@ const Perfil = () => {
       if(isAuth){
         setUserData(user);
       }else{
-        navigate('/')
+        navigate('/login')
       }
     } catch (ex) {
       console.log(ex);

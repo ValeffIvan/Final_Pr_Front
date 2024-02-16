@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Card, Button, ButtonGroup,  Form } from 'react-bootstrap';
 import { PencilFill, TrashFill, Check2, X } from 'react-bootstrap-icons';
-import { DeletePost, EditPost } from "../../services/Posts/Http";
+import { DeletePost, EditPost } from "../../services/HttpPosts";
 import { useAuth } from "../../AuthVerify/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -71,7 +71,7 @@ return (
         </div>
         <Card.Title className="mb-3 text-center">{props.post.title}</Card.Title>
         <Card.Text className="mb-3 text-center">{props.post.description}</Card.Text>
-        {(user.idUsers === props.post.authorId || user.role === "admin") && (
+        {(user.idUsers === props.post.authorId || user.role === "Administrador") && (
           <div className="d-flex justify-content-center">
             <ButtonGroup>
               <Button variant="primary" onClick={() => setIsEditing(props.post.idPost)} className="me-2"><PencilFill /> Editar</Button>

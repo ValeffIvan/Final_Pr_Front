@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { LogInRequest, ValidateToken, GetUserByEmail } from "../services/User/Http";
+import { LogInRequest, ValidateToken, GetUserByEmail } from "../services/HttpUser";
 import { jwtDecode } from "jwt-decode";
 
 export const AuthContext = createContext();

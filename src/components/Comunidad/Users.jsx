@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table, Container } from "react-bootstrap";
-import { GetUsers } from "../../services/User/Http"
+import { GetUsers } from "../../services/HttpUser"
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../AuthVerify/AuthContext";
-import { DeleteUser } from "../../services/User/Http"
+import { DeleteUser } from "../../services/HttpUser";
 
 function Users () {
 
@@ -14,7 +14,7 @@ function Users () {
 
   const loadUsers = async () => {
     try {
-      if (isAuth && user.role==="admin"){
+      if (isAuth && user.role==="Administrador"){
         const allUsers = await GetUsers();
         setUsers(allUsers); 
       }else{
@@ -76,7 +76,7 @@ function Users () {
                 <td>{user.idUsers}</td>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
-                <td>{user.role==="admin"? "Administrador" : "Usuario"}</td>
+                <td>{user.role}</td>
                 <td>{new Date(user.createTime).toLocaleString()}</td>
                 <td className="align-middle">
                   <div className="d-flex justify-content-center">

@@ -58,7 +58,7 @@ function NavBar() {
             </Nav.Item>
 
             
-            {user.role==="admin" && (
+            {user.role==="Administrador" && (
               <Nav.Item>
                 <Nav.Link
                   as={Link}

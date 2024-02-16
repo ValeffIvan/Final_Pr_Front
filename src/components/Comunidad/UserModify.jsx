@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, InputGroup, Alert } from 'react-bootstrap';
 import { useNavigate, useLocation  } from "react-router-dom";
-import { EditUser} from '../../services/User/Http';
+import { EditUser } from '../../services/HttpUser';
 import { useAuth } from '../../AuthVerify/AuthContext';
 
 
@@ -21,12 +21,11 @@ const UserModify = () => {
 
     const loadUser = () =>{
         try{
-            console.log(location.state)
             if (location.state && isAuth) {
                 setUsername(location.state.user.username);
                 setEmail(location.state.user.email);
                 setIdUsuario(location.state.user.idUsers);
-                if(location.state.user.role === "admin"){
+                if(location.state.user.role === "Administrador"){
                     setRol(2);
                 }else{
                     setRol(1);
@@ -54,7 +53,6 @@ const UserModify = () => {
                 idRol: rol,
             };
             const res = await EditUser(idUsuario, userData);
-            console.log(res)
             if (res.status !== 200 ){
                 setErrorMessage(res.message);
             }else{

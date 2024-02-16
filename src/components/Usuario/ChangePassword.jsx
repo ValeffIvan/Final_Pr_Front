@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Card, Button, Form } from 'react-bootstrap';
 import { useAuth } from "../../AuthVerify/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { ChangePass } from '../../services/User/Http';
+import { ChangePass } from '../../services/HttpUser';
 
 const ChangePassword = () => {
   const [password, setPassword] = useState('');
@@ -21,7 +21,6 @@ const ChangePassword = () => {
       if(isAuth)
       {
         await ChangePass(user.idUsers, password);
-        navigate('/')
       }else{
         navigate('/login');
       }

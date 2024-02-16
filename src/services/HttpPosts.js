@@ -1,4 +1,4 @@
-import { POST, GET, DELETE, PUT } from '../Http.js';
+import { POST, GET, DELETE, PUT } from './Http.js';
 
 export const CreatePost = async (id,title,text) => {
     let url = 'Posts';

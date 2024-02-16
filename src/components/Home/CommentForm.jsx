@@ -1,6 +1,6 @@
 import { Form, Button, InputGroup, Alert } from 'react-bootstrap';
 import { RiSendPlane2Line } from 'react-icons/ri';
-import { CreateComment } from '../../services/Comments/Http';
+import { CreateComment } from '../../services/HttpComments';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth} from '../../AuthVerify/AuthContext';

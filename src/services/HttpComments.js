@@ -1,4 +1,4 @@
-import { POST, GET, DELETE, PUT } from '../Http';
+import { POST, GET, DELETE, PUT } from './Http';
 
 export const CreateComment = async (id, postId,Comments) => {
     let url = 'Comments';
