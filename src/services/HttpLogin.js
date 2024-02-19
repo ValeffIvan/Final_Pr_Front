@@ -1,4 +1,4 @@
-import { POST, PUT } from '../Http';
+import { POST, PUT } from './Http';
 
 export const CreateUser = async (new_user_data) => {
     let url = 'user/create';

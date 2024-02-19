@@ -89,7 +89,7 @@ const Perfil = () => {
             {!isOnEditEmail ? (
               <>
                 <div className="d-flex align-items-center justify-content-center">
-                  <strong>Email:</strong> {userData.email}<br />
+                  <strong>Email: </strong> &nbsp;{userData.email}<br />
                   <Button variant="primary" onClick={() => {setUserEditedEmail(userData.email); setIsOnEditEmail(true)}}><PencilFill /></Button>
                 </div>
               </>
