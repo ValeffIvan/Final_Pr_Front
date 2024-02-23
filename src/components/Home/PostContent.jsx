@@ -17,6 +17,7 @@ function PostContent (props)  {
     if(isAuth){
         try{
             await EditPost(idPost, editedTitle, editedText);
+            props.loadPosts();
         }catch (error) {
             console.error('Error al crear el comentario:', error);
         }
@@ -30,6 +31,7 @@ function PostContent (props)  {
     if(isAuth){
         try{
             await DeletePost(postId);
+            props.loadPosts();
         }catch (error) {
             console.error('Error al crear el comentario:', error);
         }

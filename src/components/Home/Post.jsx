@@ -24,17 +24,16 @@ function Post (props)  {
     }
   };
 
-
   useEffect(() => {
     loadPosts();
-  }, [posts]);
+  }, []);
 
   return (
     <Container>
       {posts.map((post) => (
         <Card key={post.idPost} style={{ width: '100%', marginBottom: '2%' }}>
           <Card.Body style={{ textAlign: 'center' }}>
-            <PostContent post={post}/>
+            <PostContent post={post} loadPosts={loadPosts}/>
           </Card.Body>
           <Accordion>
             <Accordion.Item eventKey="1">

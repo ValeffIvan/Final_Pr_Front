@@ -25,7 +25,7 @@ function CommentForm({ postid }) {
         if(isAuth){
             try{
                 await CreateComment(user.idUsers, postid, commentText);
-                setCommentText('');
+                window.location.reload()
             } catch (error) {
                 console.error('Error al crear el comentario:', error);
             }
