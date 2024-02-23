@@ -29,6 +29,7 @@ function Users () {
     if(isAuth){
         try{
           await DeleteUser(idUsuario);
+          loadUsers()
           if (idUsuario===user.idUsers){
             signout();
           }
@@ -51,7 +52,7 @@ function Users () {
 
   useEffect(() => {
     loadUsers();
-  }, [handleDelete]);
+  }, []);
 
   return (
     <Container className="mt-5">
