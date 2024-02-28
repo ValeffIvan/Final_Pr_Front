@@ -18,7 +18,6 @@ function Post (props)  {
       else {
         response = await GetPosts();
       }
-      console.log(response)
       setPosts(response); 
     } catch (error) {
       console.error('Error al obtener los posts:', error);
