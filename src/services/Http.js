@@ -1,10 +1,9 @@
-const API_URL = process.env.REACT_APP_API_URL ?? "https://localhost:44361/api/";
+const API = process.env.REACT_APP_API_URL;
 
-export default API_URL;
+export default API;
 
 export async function LoginPost(url, request){
-    
-    return await fetch(API_URL  + url, {
+    return await fetch(API  + url, {
         method:'POST',
         mode:'cors',
         headers:{
@@ -21,7 +20,7 @@ export async function LoginPost(url, request){
 
 export async function POST(url, request){
     
-    return await fetch(API_URL  + url, {
+    return await fetch(API  + url, {
         method:'POST',
         mode:'cors',
         headers:{
@@ -41,7 +40,7 @@ export async function GET(url, request = null){
     if(request){
         uri = '/' + request;
     }
-    return await fetch(API_URL  + url + uri, {
+    return await fetch(API  + url + uri, {
         method:'GET',
         mode:'cors',
         headers:{
@@ -56,7 +55,7 @@ export async function GET(url, request = null){
 
 export async function PUT(url, request){
 
-    return await fetch(API_URL  + url, {
+    return await fetch(API  + url, {
         method:'PUT',
         mode:'cors',
         headers: {
@@ -78,7 +77,7 @@ export async function DELETE(url, request){
         uri = '/' + request;
     }
 
-    return await fetch(API_URL  + url + uri, {
+    return await fetch(API  + url + uri, {
         method:'DELETE',
         mode:'cors',
         headers:{
