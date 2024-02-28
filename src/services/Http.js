@@ -1,10 +1,10 @@
-const backendurl = "https://localhost:44361/api/";
+const API_URL = process.env.REACT_APP_API_URL;
 
-export default backendurl;
+export default API_URL;
 
 export async function LoginPost(url, request){
     
-    return await fetch(backendurl + url, {
+    return await fetch(API_URL  + url, {
         method:'POST',
         mode:'cors',
         headers:{
@@ -21,7 +21,7 @@ export async function LoginPost(url, request){
 
 export async function POST(url, request){
     
-    return await fetch(backendurl + url, {
+    return await fetch(API_URL  + url, {
         method:'POST',
         mode:'cors',
         headers:{
@@ -41,7 +41,7 @@ export async function GET(url, request = null){
     if(request){
         uri = '/' + request;
     }
-    return await fetch(backendurl + url + uri, {
+    return await fetch(API_URL  + url + uri, {
         method:'GET',
         mode:'cors',
         headers:{
@@ -56,7 +56,7 @@ export async function GET(url, request = null){
 
 export async function PUT(url, request){
 
-    return await fetch(backendurl + url, {
+    return await fetch(API_URL  + url, {
         method:'PUT',
         mode:'cors',
         headers: {
@@ -78,7 +78,7 @@ export async function DELETE(url, request){
         uri = '/' + request;
     }
 
-    return await fetch(backendurl + url + uri, {
+    return await fetch(API_URL  + url + uri, {
         method:'DELETE',
         mode:'cors',
         headers:{
