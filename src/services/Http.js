@@ -1,4 +1,4 @@
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL ?? "https://localhost:44361/api/";
 
 export default API_URL;
 
