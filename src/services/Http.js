@@ -1,5 +1,4 @@
-const API = "http://api:5000/api/";
-//const API = process.env.API_HOST + ":" + process.env.API_PORT + "/api/";
+const API = process.env.API_HOST + ":" + process.env.API_PORT + "/api/";
 export default API;
 
 export async function LoginPost(url, request){
