@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_REACT_APP_API_HOST + ":" + import.meta.env.VITE_REACT_APP_API_PORT + "/api/";
+const API = import.meta.env.VITE_SOME_KEY + "/api/";
 export default API;
 
 export async function LoginPost(url, request){
@@ -35,8 +35,7 @@ export async function POST(url, request){
 
 
 export async function GET(url, request = null){
-    console.log(import.meta.env.VITE_REACT_APP_API_HOST);
-    console.log(import.meta.env.VITE_REACT_APP_API_PORT);
+    console.log(import.meta.env.VITE_SOME_KEY);
     let uri = "";
     if(request){
         uri = '/' + request;
