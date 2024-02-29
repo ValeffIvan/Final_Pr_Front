@@ -25,8 +25,6 @@ function Post (props)  {
   };
 
   useEffect(() => {
-    console.log(process.env.API_HOST);
-    console.log(process.env.API_PORT);
     loadPosts();
   }, []);
 

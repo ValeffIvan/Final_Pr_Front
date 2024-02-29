@@ -35,6 +35,8 @@ export async function POST(url, request){
 
 
 export async function GET(url, request = null){
+    console.log(process.env.API_HOST);
+    console.log(process.env.API_PORT);
     let uri = "";
     if(request){
         uri = '/' + request;
