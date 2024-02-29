@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_API_URL;
+const API = process.env.API_HOST + ":" + process.env.API_PORT;
 
 export default API;
 
