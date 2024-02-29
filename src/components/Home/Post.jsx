@@ -11,6 +11,8 @@ function Post (props)  {
 
   const loadPosts = async () => {
     try {
+      console.log(process.env.API_HOST);
+      console.log(process.env.API_PORT);
       var response;
       if (props.authorId) {
         response = await GetPostsByAuthor(props.authorId);
@@ -18,6 +20,7 @@ function Post (props)  {
       else {
         response = await GetPosts();
       }
+      console.log(response);
       setPosts(response); 
     } catch (error) {
       console.error('Error al obtener los posts:', error);
