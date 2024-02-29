@@ -1,4 +1,4 @@
-const API = process.env.API_HOST + ":" + process.env.API_PORT;
+const API = process.env.API_HOST + ":" + process.env.API_PORT + "/api/";
 
 export default API;
 
