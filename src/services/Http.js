@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_API_HOST + ":" + process.env.REACT_APP_API_PORT + "/api/";
+const API = import.meta.env.VITE_REACT_APP_API_HOST + ":" + import.meta.env.VITE_REACT_APP_API_PORT + "/api/";
 export default API;
 
 export async function LoginPost(url, request){
@@ -35,8 +35,8 @@ export async function POST(url, request){
 
 
 export async function GET(url, request = null){
-    console.log(process.env.REACT_APP_API_HOST);
-    console.log(process.env.REACT_APP_API_PORT);
+    console.log(import.meta.env.VITE_REACT_APP_API_HOST);
+    console.log(import.meta.env.VITE_REACT_APP_API_PORT);
     let uri = "";
     if(request){
         uri = '/' + request;
