@@ -2,6 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './App';
+import { loadEnvironment } from 'react-dotenv';
+
+loadEnvironment({
+  path: './.env',
+  name: 'REACT_APP',
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
