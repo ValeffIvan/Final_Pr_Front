@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_SOME_KEY + "/api/";
+const API = "https://localhost:44361" + "/api/";
 export default API;
 
 export async function LoginPost(url, request){
@@ -35,7 +35,7 @@ export async function POST(url, request){
 
 
 export async function GET(url, request = null){
-    console.log(import.meta.env.VITE_SOME_KEY);
+  
     let uri = "";
     if(request){
         uri = '/' + request;

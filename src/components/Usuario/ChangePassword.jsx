@@ -21,6 +21,7 @@ const ChangePassword = () => {
       if(isAuth)
       {
         await ChangePass(user.idUsers, password);
+        window.location.reload();
       }else{
         navigate('/login');
       }
